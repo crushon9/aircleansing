@@ -18,9 +18,6 @@ export default function InteractiveEffects() {
     const magneticTargets = Array.from(
       document.querySelectorAll<HTMLElement>("[data-magnetic]"),
     );
-    const cursorTargets = Array.from(
-      document.querySelectorAll<HTMLElement>("a, button, [data-reactive-card]"),
-    );
     const navigationLinks = Array.from(
       document.querySelectorAll<HTMLAnchorElement>(
         ".desktop-nav a[href^='#'], .mobile-section-nav a[href^='#']",
@@ -32,7 +29,6 @@ export default function InteractiveEffects() {
     const desktopSnap = window.matchMedia("(min-width: 901px)");
     const cleanupCards: Array<() => void> = [];
     const cleanupMagneticTargets: Array<() => void> = [];
-    const cleanupCursorTargets: Array<() => void> = [];
 
     let snapLocked = false;
     let snapUnlockTimer = 0;
@@ -353,17 +349,6 @@ export default function InteractiveEffects() {
       });
     });
 
-    cursorTargets.forEach((target) => {
-      const activateCursor = () => { root.dataset.cursor = "active"; };
-      const deactivateCursor = () => { delete root.dataset.cursor; };
-      target.addEventListener("pointerenter", activateCursor);
-      target.addEventListener("pointerleave", deactivateCursor);
-      cleanupCursorTargets.push(() => {
-        target.removeEventListener("pointerenter", activateCursor);
-        target.removeEventListener("pointerleave", deactivateCursor);
-      });
-    });
-
     updateScrollEffects();
     window.addEventListener("scroll", requestScrollUpdate, { passive: true });
     window.addEventListener("resize", requestScrollUpdate, { passive: true });
@@ -377,7 +362,6 @@ export default function InteractiveEffects() {
       navigationObserver?.disconnect();
       cleanupCards.forEach((cleanup) => cleanup());
       cleanupMagneticTargets.forEach((cleanup) => cleanup());
-      cleanupCursorTargets.forEach((cleanup) => cleanup());
       window.removeEventListener("scroll", requestScrollUpdate);
       window.removeEventListener("resize", requestScrollUpdate);
       window.removeEventListener("pointermove", updatePointerGlow);
@@ -389,7 +373,6 @@ export default function InteractiveEffects() {
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
       delete root.dataset.motion;
       delete root.dataset.scrolled;
-      delete root.dataset.cursor;
       delete root.dataset.sectionSnap;
       delete root.dataset.snapDirection;
       snapTargets.forEach((target) => target.classList.remove("is-snap-active"));
@@ -400,7 +383,6 @@ export default function InteractiveEffects() {
     <>
       <div className="scroll-progress" aria-hidden="true"><span /></div>
       <div className="pointer-glow" aria-hidden="true" />
-      <div className="cursor-orbit" aria-hidden="true" />
     </>
   );
 }

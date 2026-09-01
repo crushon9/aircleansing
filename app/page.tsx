@@ -426,7 +426,6 @@ export default function Home() {
             <div><dt>사용 전</dt><dd>내용물이 섞이도록 충분히 흔들기</dd></div>
             <div><dt>제조</dt><dd>Made in Korea</dd></div>
           </dl>
-          <a className="text-link" href="#ingredients">무엇을 담았는지 보기</a>
         </div>
       </section>
 
