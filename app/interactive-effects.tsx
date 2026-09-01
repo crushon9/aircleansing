@@ -51,12 +51,17 @@ export default function InteractiveEffects() {
       activeSnapIndex = index;
     };
 
+    const getSectionAnchorOffset = () => {
+      const value = window.getComputedStyle(root).getPropertyValue("--section-anchor-offset");
+      return Number.parseFloat(value) || 0;
+    };
+
     const findCurrentSnapIndex = () => {
       if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
         return snapTargets.length - 1;
       }
 
-      const position = window.scrollY + 2;
+      const position = window.scrollY + getSectionAnchorOffset() + 2;
       let index = 0;
       snapTargets.forEach((target, targetIndex) => {
         if (target.offsetTop <= position) index = targetIndex;
@@ -72,9 +77,13 @@ export default function InteractiveEffects() {
         document.documentElement.scrollHeight - window.innerHeight,
       );
       const stops: Array<{ position: number; sectionIndex: number }> = [];
+      const anchorOffset = getSectionAnchorOffset();
 
       snapTargets.forEach((target, sectionIndex) => {
-        const start = Math.max(0, Math.min(Math.round(target.offsetTop), maximumScroll));
+        const start = Math.max(
+          0,
+          Math.min(Math.round(target.offsetTop - anchorOffset), maximumScroll),
+        );
         const end = Math.max(
           start,
           Math.min(

@@ -10,7 +10,7 @@
   --hero-shift: 0px;
   --pointer-page-x: 50vw;
   --pointer-page-y: 50vh;
-  --section-anchor-offset: 96px;
+  --section-anchor-offset: 68px;
 }
 
 * { box-sizing: border-box; }
@@ -2162,7 +2162,7 @@ html[data-motion="ready"] .product-copy.is-visible .aroma-profile li > i::after 
 
 /* Compact 13-inch laptop rhythm: approximately 10–20% smaller */
 @media (min-width: 901px) and (max-width: 1600px) and (max-height: 1000px) {
-  :root { --section-anchor-offset: 76px; }
+  :root { --section-anchor-offset: 58px; }
   body { font-size: 16px; }
 
   .site-header { min-height: 64px; padding-inline: 22px; }
@@ -2760,4 +2760,458 @@ html[data-scrolled="true"] .site-header {
   :root { --hero-band-height: 58px; }
   .aroma-profile { padding: 18px; border-radius: 16px; }
   .aroma-profile li > i { height: 12px; }
+}
+
+/* Airier responsive composition: more background around every content group */
+:root {
+  --layout-main: 1040px;
+  --layout-wide: 1080px;
+  --layout-header: 1120px;
+  --layout-gap: clamp(14px, 1.25vw, 18px);
+}
+
+@media (min-width: 901px) {
+  .site-header {
+    padding-right: max(32px, calc((100vw - var(--layout-header)) / 2));
+    padding-left: max(32px, calc((100vw - var(--layout-header)) / 2));
+  }
+
+  .hero-grid {
+    width: min(var(--layout-wide), calc(100% - 80px));
+    gap: clamp(52px, 6vw, 84px);
+  }
+
+  .section {
+    width: min(var(--layout-main), calc(100% - 80px));
+  }
+
+  .visual-story-section,
+  .features-section {
+    width: min(var(--layout-wide), calc(100% - 80px));
+  }
+
+  .story-grid {
+    gap: clamp(56px, 7vw, 96px);
+  }
+
+  .visual-story-grid,
+  .feature-grid,
+  .usage-grid,
+  .howto-list {
+    gap: var(--layout-gap);
+  }
+
+  .product-section {
+    width: 100%;
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+    align-items: center;
+    gap: clamp(28px, 3vw, 48px);
+    padding: clamp(42px, 6vh, 60px) max(40px, calc((100vw - var(--layout-wide)) / 2));
+  }
+
+  .product-photo-wrap {
+    min-height: min(78svh, 720px);
+    border-radius: 24px;
+    box-shadow: 0 26px 64px rgba(49, 93, 72, .12);
+  }
+
+  .product-copy {
+    padding: clamp(32px, 3.4vw, 48px);
+    border: 1px solid rgba(255, 255, 255, .62);
+    border-radius: 24px;
+    box-shadow: 0 24px 64px rgba(49, 93, 72, .08), inset 0 1px 0 rgba(255, 255, 255, .78);
+  }
+
+  .ingredients-section,
+  .technology-section {
+    width: 100%;
+    gap: clamp(56px, 6vw, 84px);
+    padding-right: max(40px, calc((100vw - var(--layout-main)) / 2));
+    padding-left: max(40px, calc((100vw - var(--layout-main)) / 2));
+  }
+
+  .closing-section {
+    gap: clamp(56px, 7vw, 96px);
+    padding-right: max(40px, calc((100vw - var(--layout-main)) / 2));
+    padding-left: max(40px, calc((100vw - var(--layout-main)) / 2));
+  }
+
+  .closing-product {
+    width: min(100%, 440px);
+  }
+
+  .site-footer {
+    padding-right: max(40px, calc((100vw - var(--layout-header)) / 2));
+    padding-left: max(40px, calc((100vw - var(--layout-header)) / 2));
+  }
+}
+
+@media (min-width: 901px) and (min-height: 760px) {
+  .story,
+  .visual-story-section,
+  .features-section,
+  .usage-section,
+  .howto-section {
+    display: grid;
+    align-content: center;
+    align-content: safe center;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .hero h1 {
+    font-size: clamp(44px, 5.2vw, 54px);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1600px) and (max-height: 1000px) {
+  .hero-grid {
+    gap: clamp(44px, 3.8vw, 52px);
+    padding-top: 92px;
+    padding-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 3.75vw, 54px);
+  }
+
+  .hero-description {
+    max-width: 460px;
+  }
+
+  .hero-image-frame {
+    width: min(100%, 50vh);
+  }
+
+  .floating-note {
+    width: 150px;
+    padding: 15px;
+  }
+
+  .section {
+    padding-top: clamp(52px, 6.3vh, 60px);
+    padding-bottom: clamp(52px, 6.3vh, 60px);
+  }
+
+  .story {
+    padding-bottom: 62px;
+  }
+
+  .story-grid {
+    margin-top: 34px;
+  }
+
+  .question-list article {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .visual-story-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .visual-story-heading {
+    gap: 52px;
+  }
+
+  .visual-story-grid {
+    grid-auto-rows: min(23vh, 210px);
+    margin-top: 34px;
+  }
+
+  .product-photo-wrap {
+    min-height: min(78svh, 620px);
+  }
+
+  .aroma-profile {
+    margin-top: 18px;
+    padding: 16px 18px 18px;
+  }
+
+  .aroma-profile ol {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .features-section {
+    padding-bottom: 62px;
+  }
+
+  .feature-grid {
+    margin-top: 34px;
+  }
+
+  .feature-card {
+    min-height: 360px;
+  }
+
+  .feature-card-body {
+    min-height: 150px;
+    padding: 18px 20px 20px;
+  }
+
+  .ingredients-visual {
+    width: min(100%, 290px);
+  }
+
+  .ingredient-list li {
+    min-height: 90px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .ingredient-orb {
+    width: 54px;
+  }
+
+  .technology-steps li {
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+
+  .technology-symbol {
+    width: 76px;
+  }
+
+  .usage-grid {
+    margin-top: 24px;
+  }
+
+  .usage-card {
+    min-height: 250px;
+  }
+
+  .usage-card-body {
+    min-height: 110px;
+    padding: 15px 17px 17px;
+  }
+
+  .usage-heading {
+    column-gap: 44px;
+  }
+
+  .howto-section {
+    padding-top: 48px;
+  }
+
+  .howto-list {
+    margin-top: 34px;
+  }
+
+  .howto-list li {
+    min-height: 320px;
+  }
+
+  .howto-copy {
+    padding: 18px 20px 20px;
+  }
+
+  .caution-box {
+    margin-top: 16px;
+    padding: 18px 22px;
+  }
+
+  .closing-product {
+    width: min(100%, 420px);
+  }
+
+  .closing-section {
+    min-height: calc(100svh - var(--section-anchor-offset));
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1600px) and (max-height: 850px) {
+  .product-section {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .usage-section {
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .usage-grid {
+    margin-top: 18px;
+  }
+
+  .usage-card {
+    min-height: 225px;
+  }
+
+  .usage-card-body {
+    min-height: 100px;
+    padding: 12px 15px 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .section,
+  .visual-story-section,
+  .features-section {
+    width: min(720px, calc(100% - 56px));
+  }
+
+  .feature-grid,
+  .usage-grid,
+  .howto-list,
+  .visual-story-grid {
+    gap: 16px;
+  }
+
+  .product-section {
+    width: 100%;
+    gap: 18px;
+    padding: 28px;
+  }
+
+  .product-photo-wrap {
+    width: min(100%, 560px);
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    box-shadow: 0 24px 58px rgba(49, 93, 72, .11);
+  }
+
+  .product-copy {
+    width: min(100%, 640px);
+    margin: 0 auto;
+    padding: 60px max(28px, 7vw) 68px;
+    border: 1px solid rgba(255, 255, 255, .62);
+    border-radius: 24px;
+  }
+
+  .ingredients-section,
+  .technology-section {
+    width: 100%;
+    padding-right: max(28px, 6vw);
+    padding-left: max(28px, 6vw);
+  }
+
+  .closing-section,
+  .site-footer {
+    padding-right: max(28px, 7vw);
+    padding-left: max(28px, 7vw);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-grid {
+    width: calc(100% - 40px);
+    gap: 28px;
+    padding-top: 124px;
+    padding-bottom: 28px;
+  }
+
+  .hero-image-frame {
+    width: min(78vw, 304px);
+  }
+
+  .floating-note {
+    width: 142px;
+    padding: 14px;
+  }
+
+  .section,
+  .visual-story-section,
+  .features-section {
+    width: calc(100% - 48px);
+    padding-top: 78px;
+    padding-bottom: 78px;
+  }
+
+  .visual-story-grid,
+  .feature-grid,
+  .howto-list {
+    gap: 14px;
+  }
+
+  .product-section {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .product-copy {
+    padding: 48px 22px 56px;
+    border-radius: 20px;
+  }
+
+  .product-photo-wrap {
+    border-radius: 20px;
+  }
+
+  .ingredients-section,
+  .technology-section,
+  .closing-section,
+  .site-footer {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .ingredient-list {
+    margin-top: 38px;
+  }
+
+  .ingredient-list li {
+    min-height: 0;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .ingredient-orb {
+    width: 48px;
+  }
+
+  .technology-steps {
+    margin-top: 30px;
+  }
+
+  .technology-steps li {
+    grid-template-columns: 38px minmax(0, 1fr) 80px;
+    gap: 12px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .technology-steps li > span {
+    width: 38px;
+  }
+
+  .technology-symbol {
+    grid-column: auto;
+    width: 80px;
+    margin-top: 0;
+    place-self: center;
+  }
+
+  .feature-card {
+    min-height: 430px;
+  }
+
+  .feature-card-body {
+    min-height: 200px;
+  }
+
+  .howto-list li {
+    min-height: 410px;
+  }
+
+  .closing-section {
+    gap: 44px;
+  }
+
+  .closing-product {
+    width: min(100%, 300px);
+  }
+
+  .usage-grid {
+    gap: 14px;
+    padding-right: 24px;
+  }
+
+  .usage-card {
+    flex-basis: 76vw;
+  }
 }
