@@ -23,6 +23,7 @@ export default function InteractiveEffects() {
         ".desktop-nav a[href^='#'], .mobile-section-nav a[href^='#']",
       ),
     );
+    const productSection = document.querySelector<HTMLElement>("#product");
     const snapTargets = Array.from(
       document.querySelectorAll<HTMLElement>("main > section"),
     );
@@ -217,6 +218,18 @@ export default function InteractiveEffects() {
     syncSnapMode();
 
     let observer: IntersectionObserver | undefined;
+    let aromaObserver: IntersectionObserver | undefined;
+    let aromaFrame = 0;
+
+    const restartAromaProfile = () => {
+      if (!productSection || reducedMotion.matches) return;
+      productSection.classList.remove("is-aroma-active");
+      if (aromaFrame) window.cancelAnimationFrame(aromaFrame);
+      aromaFrame = window.requestAnimationFrame(() => {
+        productSection.classList.add("is-aroma-active");
+        aromaFrame = 0;
+      });
+    };
 
     if (reducedMotion.matches) {
       revealTargets.forEach((target) => target.classList.add("is-visible"));
@@ -235,6 +248,19 @@ export default function InteractiveEffects() {
       revealTargets.forEach((target) => observer?.observe(target));
     }
 
+    if (productSection && !reducedMotion.matches) {
+      aromaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) restartAromaProfile();
+            else productSection.classList.remove("is-aroma-active");
+          });
+        },
+        { threshold: 0.45 },
+      );
+      aromaObserver.observe(productSection);
+    }
+
     const navigationSections = navigationLinks
       .map((link) => document.querySelector<HTMLElement>(link.hash))
       .filter((section): section is HTMLElement => section !== null);
@@ -246,6 +272,12 @@ export default function InteractiveEffects() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
         if (!visibleEntry) return;
+
+        root.dataset.floatingSurface = visibleEntry.target.matches(
+          ".technology-section, .closing-section",
+        )
+          ? "dark"
+          : "light";
 
         navigationLinks.forEach((link) => {
           const isActive = link.hash === `#${visibleEntry.target.id}`;
@@ -359,6 +391,7 @@ export default function InteractiveEffects() {
 
     return () => {
       observer?.disconnect();
+      aromaObserver?.disconnect();
       navigationObserver?.disconnect();
       cleanupCards.forEach((cleanup) => cleanup());
       cleanupMagneticTargets.forEach((cleanup) => cleanup());
@@ -369,12 +402,15 @@ export default function InteractiveEffects() {
       desktopSnap.removeEventListener("change", syncSnapMode);
       reducedMotion.removeEventListener("change", syncSnapMode);
       if (snapUnlockTimer) window.clearTimeout(snapUnlockTimer);
+      if (aromaFrame) window.cancelAnimationFrame(aromaFrame);
       cancelSectionScroll();
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
       delete root.dataset.motion;
       delete root.dataset.scrolled;
       delete root.dataset.sectionSnap;
       delete root.dataset.snapDirection;
+      delete root.dataset.floatingSurface;
+      productSection?.classList.remove("is-aroma-active");
       snapTargets.forEach((target) => target.classList.remove("is-snap-active"));
     };
   }, []);

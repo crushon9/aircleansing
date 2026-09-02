@@ -10,10 +10,15 @@ test("exports a complete Korean AIR CLEANSING landing page", async () => {
   assert.match(html, /향으로 덮기보다/);
   assert.match(html, /C3 COLLOID DISPERSION/);
   assert.match(html, /흔들고, 가볍게 분사하고/);
-  assert.match(html, /공간에서 시작해/);
+  assert.match(html, /공간에 스미는 숲의 결/);
+  assert.match(html, /매일 뿌리는 탈취제/);
+  assert.match(html, /향만 남아도 괜찮을까요/);
+  assert.match(html, /당신이 숨 쉬는 공간을/);
+  assert.match(html, /클렌징하세요/);
   assert.match(html, /mobile-section-nav/);
   assert.match(html, /air-cleansing-hero\.jpg/);
-  assert.match(html, /air-cleansing-studio\.webp/);
+  assert.match(html, /air-cleansing-botanical-label-restored\.webp/);
+  assert.match(html, /brand-story-fresh-air\.webp/);
   assert.match(html, /AROMA PROFILE/);
   assert.match(html, /ingredients-botanical\.webp/);
   assert.match(html, /technology-dispersion\.webp/);
@@ -21,7 +26,7 @@ test("exports a complete Korean AIR CLEANSING landing page", async () => {
   assert.match(html, /use-bathroom\.webp/);
   assert.match(html, /use-car-interior\.webp/);
   assert.match(html, /feature-dispersion\.webp/);
-  assert.match(html, /howto-shake\.webp/);
+  assert.match(html, /howto-shake-motion\.webp/);
   assert.doesNotMatch(html, /product-atmosphere|spray-plume|spray-haze|mist-particle|wind-trace/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
@@ -50,7 +55,7 @@ test("exports required public assets", async () => {
     access(new URL("../out/images/feature-space-care.webp", import.meta.url)),
     access(new URL("../out/images/feature-fabric.webp", import.meta.url)),
     access(new URL("../out/images/feature-dispersion.webp", import.meta.url)),
-    access(new URL("../out/images/howto-shake.webp", import.meta.url)),
+    access(new URL("../out/images/howto-shake-motion.webp", import.meta.url)),
     access(new URL("../out/images/howto-spray.webp", import.meta.url)),
     access(new URL("../out/images/howto-dry.webp", import.meta.url)),
     access(new URL("../out/images/ingredient-hinoki-water.webp", import.meta.url)),
