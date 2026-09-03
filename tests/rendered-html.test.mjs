@@ -12,7 +12,7 @@ test("exports a complete Korean AIR CLEANSING landing page", async () => {
   assert.match(html, /흔들고, 가볍게 분사하고/);
   assert.match(html, /공간에 스미는 숲의 결/);
   assert.match(html, /매일 뿌리는 탈취제/);
-  assert.match(html, /향만 남아도 괜찮을까요/);
+  assert.match(html, /향만 남아도 될까요/);
   assert.match(html, /당신이 숨 쉬는 공간을/);
   assert.match(html, /클렌징하세요/);
   assert.match(html, /mobile-section-nav/);

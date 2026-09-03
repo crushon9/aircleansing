@@ -47,7 +47,7 @@ export function IngredientsSection() {
           />
           <figcaption>
             <span>THE BOTANICAL BASE</span>
-            <strong>편백 · 해안송 · 베르가못</strong>
+            <strong>편백 · <span className="ingredient-caption-keep">해안송</span> · 베르가못</strong>
           </figcaption>
         </figure>
       </div>
@@ -80,7 +80,7 @@ export function TechnologySection() {
     <section className="technology-section section" id="technology" aria-labelledby="technology-title">
       <div className="technology-copy" data-reveal>
         <p className="section-kicker light">C3 COLLOID DISPERSION</p>
-        <h2 id="technology-title">계면활성제 대신<br /><em>분산 기술을 선택했습니다.</em></h2>
+        <h2 id="technology-title">계면활성제 대신<br /><em>분산을 택했습니다.</em></h2>
         <p>오일과 워터를 한 용기에 담기 위해 원심력 분산, 미세화, 콜로이드 시스템의 세 단계를 적용했습니다.</p>
         <figure className="technology-visual" data-reveal data-parallax>
           <Image

@@ -72,7 +72,7 @@ export function StorySection() {
             <h2 id="story-title">
               매일 뿌리는 탈취제,
               <br />
-              <em>향만 남아도 괜찮을까요?</em>
+              <em>향만 남아도 될까요?</em>
             </h2>
           </div>
           <p className="story-lead">
